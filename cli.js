@@ -21,6 +21,7 @@ function optionsFromCommand(command) {
 }
 
 function stateFromColor(color) {
+  if (color === "off") return { on: false }
   const xyz = convert.keyword.xyz(color)
   const sum = xyz[0] + xyz[1] + xyz[2]
   const xy = [xyz[0] / sum, xyz[1] / sum]
