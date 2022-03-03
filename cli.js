@@ -25,7 +25,7 @@ function stateFromColor(color) {
   const xyz = convert.keyword.xyz(color)
   const sum = xyz[0] + xyz[1] + xyz[2]
   const xy = [xyz[0] / sum, xyz[1] / sum]
-  const state = { on: true, bri: 40, hue: 255, sat: 254, ct: 500, xy: xy }
+  const state = { on: true, bri: 60, hue: 255, sat: 254, ct: 500, xy: xy }
   return state
 }
 
