@@ -2,10 +2,13 @@
   "name": "busylight",
   "version": "1.0.0",
   "main": "cli.js",
-  "bin": { "bl": "./cli.js" },
+  "bin": {
+    "bl": "./cli.js"
+  },
   "license": "MIT",
   "dependencies": {
     "color-convert": "^2.0.1",
+    "commander": "^9.0.0",
     "node-hue-api": "^5.0.0-beta.13"
   }
 }

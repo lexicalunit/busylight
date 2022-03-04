@@ -9,26 +9,31 @@ no error handling at all.
 ### First you must initialize the application
 
 ```shell
-node . init "App Name" "Device Name"
+node . --init "App Name"
 ```
 
 For example something like:
 
 ```shell
-node . init my-app my-laptop
+node . --init my-app
 ```
 
 You will then need to press the button on your Hue Bridge to confirm.
 
+This will create a file named `busylight.json` which will contain the
+details of the authorized user you just created. You can now set lights.
+
 ### Then you can set light colors
 
 ```shell
-node . set "Light Name" "Color Name"
+node . -l "Light Name" -c "Color Name"
 ```
 
 For example if you have a Hue Light named "desk-lamp" and you want to
 set it to the color blue, you could run:
 
 ```shell
-node . set desk-lamp blue
+node . -l desk-lamp -c blue
 ```
+
+For more usage details run `node . --help`.
