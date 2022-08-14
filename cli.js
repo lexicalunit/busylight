@@ -28,7 +28,7 @@ const stateFromOptions = ({color, brightness}) => {
 
 const init = async (options) => {
   try {
-    const results = await discovery.nupnpSearch()
+    const results = await discovery.mdnsSearch()
     const host = results[0].ipaddress
     const local = await api.createLocal(host).connect()
     const user = await local.users.createUser(options.init, os.hostname())
@@ -41,7 +41,7 @@ const init = async (options) => {
 const main = async (options) => {
   try {
     const settings = settingsFromFile()
-    const results = await discovery.nupnpSearch()
+    const results = await discovery.mdnsSearch()
     const host = results[0].ipaddress
     const secure = await api.createLocal(host).connect(settings.username)
     const light = (await secure.lights.getLightByName(options.light))[0]
