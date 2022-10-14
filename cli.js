@@ -49,6 +49,7 @@ const main = async (options) => {
     await secure.lights.setLightState(light.id, state)
   } catch (err) {
     console.log(err)
+    throw err
   }
 }
 
@@ -83,7 +84,10 @@ const options = program.opts()
 if (options.init) {
   init(options)
 } else {
-  main(options)
+  // three attempts before giving up
+  fn = main.bind(undefined, options)
+  fn()
+    .catch(() => fn())
+    .catch(() => fn())
+    .catch(() => fn())
 }
-
-
