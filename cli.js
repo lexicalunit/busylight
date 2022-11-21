@@ -44,6 +44,13 @@ const main = async (options) => {
     const results = await discovery.mdnsSearch()
     const host = results[0].ipaddress
     const secure = await api.createLocal(host).connect(settings.username)
+    if (options.list) {
+      const lights = await secure.lights.getAll()
+      for (const light of lights) {
+        console.log(light.data.name)
+      }
+      return
+    }
     const light = (await secure.lights.getLightByName(options.light))[0]
     const state = stateFromOptions(options)
     await secure.lights.setLightState(light.id, state)
@@ -64,19 +71,22 @@ const parseBrightness = (value, _) => {
 
 program
   .addOption(
-    new Option('--init <app-name>')
+    new Option('--init <app-name>', description="Create a new busylight app")
   )
   .addOption(
-    new Option('-c, --color <css-color-name>')
-      .default('white')
+    new Option('-c, --color <css-color-name>', description="Set device color")
+    .default('white')
   )
   .addOption(
-    new Option('-b, --brightness <integer>')
+    new Option('-b, --brightness <integer>', description="Set device brightness")
       .default(100)
       .argParser(parseBrightness)
   )
   .addOption(
-    new Option('-l, --light <name>')
+    new Option('-l, --light <name>', description="Select a device")
+  )
+  .addOption(
+    new Option('--list', description="List all local device names")
   )
 program.parse()
 const options = program.opts()

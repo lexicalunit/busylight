@@ -6,6 +6,12 @@ no error handling at all.
 
 ## Usage
 
+## Install Dependencies
+
+```shell
+yarn
+```
+
 ### First you must initialize the application
 
 ```shell
