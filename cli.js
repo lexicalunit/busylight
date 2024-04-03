@@ -28,7 +28,10 @@ const stateFromOptions = ({color, brightness}) => {
 
 const init = async (options) => {
   try {
-    const results = await discovery.mdnsSearch()
+    const results = await discovery.nupnpSearch()
+    if (results.length === 0) throw new Error('nupnpSearch: No devices found')
+    // const results = await discovery.mdnsSearch()
+    // if (results.length === 0) throw new Error('mdnsSearch: No devices found')
     const host = results[0].ipaddress
     const local = await api.createLocal(host).connect()
     const user = await local.users.createUser(options.init, os.hostname())
@@ -41,7 +44,11 @@ const init = async (options) => {
 const main = async (options) => {
   try {
     const settings = settingsFromFile()
-    const results = await discovery.mdnsSearch()
+    const results = await discovery.nupnpSearch()
+    if (results.length === 0) throw new Error('nupnpSearch: No devices found')
+    // const results = await discovery.mdnsSearch()
+    // if (results.length === 0) throw new Error('mdnsSearch: No devices found')
+    console.log(results)
     const host = results[0].ipaddress
     const secure = await api.createLocal(host).connect(settings.username)
     if (options.list) {
