@@ -1,18 +1,22 @@
-# Busy Light
+# Project Archived
+
+This repository is now archived. I recommend using [openhue-cli](https://github.com/openhue/openhue-cli) instead.
+
+## Busy Light
 
 Uses the [Hue Light](https://developers.meethue.com/) API to set colors
 via the command line. This tool is incredibly bare bones and has almost
 no error handling at all.
 
-## Usage
+### Usage
 
-## Install Dependencies
+### Install Dependencies
 
 ```shell
 yarn
 ```
 
-### First you must initialize the application
+#### First you must initialize the application
 
 ```shell
 node . --init "App Name"
@@ -29,7 +33,7 @@ You will then need to press the button on your Hue Bridge to confirm.
 This will create a file named `busylight.json` which will contain the
 details of the authorized user you just created. You can now set lights.
 
-### Then you can set light colors
+#### Then you can set light colors
 
 ```shell
 node . -l "Light Name" -c "Color Name"
